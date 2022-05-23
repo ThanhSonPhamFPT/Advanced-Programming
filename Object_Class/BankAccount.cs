@@ -34,7 +34,7 @@ namespace DemoClassObject
         }
         public override string ToString()
         {
-            return $"Account Id{Id}, balance {Balance}";
+            return $"Account Id{Id}, balance {Balance:0.00}";
         }
     }
 }
