@@ -12,9 +12,30 @@ namespace DemoEncapsulation
         private string lastName;
         private int age;
         private decimal salary;
-        public string FirstName { get { return firstName; } set { firstName = value; } }
-        public string LastName { get { return lastName; } set { lastName = value; } }
-        public int Age { get { return age; } set { age = value; } }
+        public string FirstName { 
+            get { return firstName; } 
+            set 
+            { 
+                if (value.Length < 3) throw new ArgumentException("First name cannot contain fewer than 3 symbols!");
+                firstName = value; 
+            } 
+        }
+        public string LastName { 
+            get { return lastName; }
+            set 
+            {
+                if (value.Length < 3) throw new ArgumentException("Last name cannot contain fewer than 3 symbols!");
+                lastName = value;
+            } 
+        }
+        public int Age { 
+            get { return age; } 
+            set 
+            {
+                if (value <= 0) throw new ArgumentException("Age cannot be zero or a negative integer!");
+                age = value; 
+            } 
+        }
         public decimal Salary { 
             get { return salary; } 
             set 
@@ -34,10 +55,10 @@ namespace DemoEncapsulation
             this.Age = age;
             this.Salary = salary;
         }
-        //public Person(string firstName, string lastName, int age):this(firstName,lastName, age, 0)
-        //{
+        public Person(string firstName, string lastName, int age) : this(firstName, lastName, age, 0)
+        {
 
-        //}
+        }
         public override string ToString()
         {
             return $"{this.firstName} {this.lastName} receives {this.salary:0.00} leva.";
